@@ -1,5 +1,5 @@
 {
-  "name": "linkjuice.js",
+  "name": "linkjuice",
   "version": "1.0.0",
   "description": "Automatically wraps and creates anchor links for <h1-h6> headings",
   "author": "@toddmotto",
