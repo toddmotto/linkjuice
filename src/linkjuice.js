@@ -2,7 +2,7 @@ let scope, nodes, inject;
 
 const wrapNode = node => {
   let a = document.createElement('a');
-  a.href = '#' + node.id;
+  a.href = `#${node.id}`;
   a.className = 'linkjuice';
   a.innerHTML = `<span class="linkjuice-icon">${inject}</span>${node.innerHTML}`;
   node.innerHTML = '';
