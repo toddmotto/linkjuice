@@ -1,4 +1,4 @@
-/*! linkjuice.js v1.0.0 | (c) 2016 @toddmotto | https://github.com/toddmotto/linkjuice */
+/*! linkjuice v1.0.0 | (c) 2016 @toddmotto | https://github.com/toddmotto/linkjuice */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(['exports'], factory);
@@ -24,6 +24,10 @@
   var wrapNode = function wrapNode(node) {
     var a = document.createElement('a');
     a.href = '#' + node.id;
+    if (!a.href) {
+      console.warn('No ID for element', a);
+      return;
+    }
     a.className = 'linkjuice';
     a.innerHTML = '<span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML;
     node.innerHTML = '';
