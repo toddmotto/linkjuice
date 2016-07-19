@@ -3,6 +3,10 @@ let scope, nodes, inject;
 const wrapNode = node => {
   let a = document.createElement('a');
   a.href = `#${node.id}`;
+  if(!a.href) {
+      console.warn('No ID for element', a);
+      return ;
+  }
   a.className = 'linkjuice';
   a.innerHTML = `<span class="linkjuice-icon">${inject}</span>${node.innerHTML}`;
   node.innerHTML = '';
