@@ -1,6 +1,6 @@
 {
   "name": "linkjuice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically wraps and creates anchor links for <h1-h6> headings",
   "author": "@toddmotto",
   "license": "MIT",
