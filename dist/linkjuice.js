@@ -1,4 +1,4 @@
-/*! linkjuice v1.0.0 | (c) 2016 @toddmotto | https://github.com/toddmotto/linkjuice */
+/*! linkjuice v1.0.1 | (c) 2016 @toddmotto | https://github.com/toddmotto/linkjuice */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(['exports'], factory);
@@ -21,20 +21,21 @@
       nodes = void 0,
       inject = void 0;
 
-  var wrapNode = function wrapNode(node) {
-    var a = document.createElement('a');
-    a.href = '#' + node.id;
-    if (!a.href) {
-      console.warn('No ID for element', a);
+  var makeLink = function makeLink(node, inject) {
+    return '\n    <a class="linkjuice" id="' + node.id + '">\n      <span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML + '\n    </a>';
+  };
+
+  var wrapNode = function wrapNode(node, contentFn) {
+    if (!node.id) {
+      console.warn('No ID for element', node);
       return;
     }
-    a.className = 'linkjuice';
-    a.innerHTML = '<span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML;
-    node.innerHTML = '';
-    node.appendChild(a);
+    node.innerHTML = contentFn(node, inject);
   };
 
   var linkjuice = function linkjuice(mount, _ref) {
+    var _ref$contentFn = _ref.contentFn;
+    var contentFn = _ref$contentFn === undefined ? makeLink : _ref$contentFn;
     var _ref$icon = _ref.icon;
     var icon = _ref$icon === undefined ? '#' : _ref$icon;
     var _ref$selectors = _ref.selectors;
@@ -45,11 +46,12 @@
     inject = icon;
     nodes = scope.querySelectorAll(selectors.join(','));
     for (var i = nodes.length; i--;) {
-      wrapNode(nodes[i]);
+      wrapNode(nodes[i], contentFn);
     }
   };
 
-  var init = exports.init = function init(mount, options) {
+  var init = exports.init = function init(mount) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
     return linkjuice(mount, options);
   };
 });

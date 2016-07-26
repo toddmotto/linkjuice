@@ -28,6 +28,28 @@ Type: `String` Default: `'#'`
 
 Default icon or text. This gets parsed to HTML so you can inject anything you like, such as `<i class="my-icon"></i>`.
 
+#### options.contentFn
+Type: `Function` Default: A function which returns the heading content as a link, prepended with the `icon` string.
+
+This function is used to customize how each heading tag contents are rewritten.
+It receives two parameters:
+
+- `node`: The Heading tag DOM Node
+- `icon`: The value of `options.icon`
+
+It should return a string which is the heading tag's rewritten content.
+
+Example which returns the original heading text followed by a FontAwesome link icon:
+
+```js
+const contentFn = (node) => `
+    ${node.innerHTML} 
+    <a href='#${node.id}' class='linkjuice'> 
+      <i class='fa fa-link'></i>
+    </a>
+`;
+```
+
 ## npm installation
 
 ```
@@ -52,6 +74,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release history
 
+- 1.0.1
+  - Allow customized innerHTML content
 - 1.0.0
   - Initial release
 
