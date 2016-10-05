@@ -72,6 +72,51 @@ Ensure you're using the files from the `dist` directory (contains compiled produ
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Gulp.
 
+### 1. Install Gulp
+
+You just need to have `npm` installed.
+
+```
+sudo npm install -g gulp-cli
+```
+
+### 2. Install dependencies
+
+Go into this repo on your local file system and install all needed modules first.
+
+```
+npm install
+```
+
+### 3. Do something awesome
+
+Now just add your thing which you want to implement.
+
+### 4. Test your code
+
+Now you need to make sure your code is in line of the standards for this project. Simply run the following and adjust your code accordingly: `gulp`
+
+It should look something like that:
+
+```
+❯ gulp
+[23:24:26] Using gulpfile ~/REPOS/github/linkjuice/gulpfile.js
+[23:24:26] Starting 'lint'...
+[23:24:26] Starting 'clean'...
+[23:24:26] Finished 'clean' after 31 ms
+[23:24:26] Starting 'scripts'...
+[23:24:26] Finished 'lint' after 132 ms
+[23:24:27] Finished 'scripts' after 591 ms
+[23:24:27] Starting 'default'...
+[23:24:27] Finished 'default' after 5.92 μs
+```
+
+### 5. Make a pull request
+
+After you forked this repo added all the things you wanted to add, made it pretty and pushed it to your special branch. Just open a pull-request and give it a nice description.
+
+Thanks! :)
+
 ## Release history
 
 - 1.0.1
