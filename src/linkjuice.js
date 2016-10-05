@@ -1,10 +1,10 @@
 let scope, nodes, inject;
 
 const makeLink = (node, inject) => `
-    <a class="linkjuice" id="${node.id}">
+    <a class="linkjuice" href="#${node.id}">
       <span class="linkjuice-icon">${inject}</span>${node.innerHTML}
     </a>`;
-    
+
 const wrapNode = (node, contentFn) => {
   if (!node.id) {
     console.warn('No ID for element', node);

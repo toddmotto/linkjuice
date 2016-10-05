@@ -22,7 +22,7 @@
       inject = void 0;
 
   var makeLink = function makeLink(node, inject) {
-    return '\n    <a class="linkjuice" id="' + node.id + '">\n      <span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML + '\n    </a>';
+    return '\n    <a class="linkjuice" href="#' + node.id + '">\n      <span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML + '\n    </a>';
   };
 
   var wrapNode = function wrapNode(node, contentFn) {
@@ -51,7 +51,7 @@
   };
 
   var init = exports.init = function init(mount) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return linkjuice(mount, options);
   };
 });
