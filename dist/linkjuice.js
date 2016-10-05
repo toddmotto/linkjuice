@@ -25,10 +25,25 @@
     return '\n    <a class="linkjuice" id="' + node.id + '">\n      <span class="linkjuice-icon">' + inject + '</span>' + node.innerHTML + '\n    </a>';
   };
 
+  var sanitizeString = function sanitizeString(string) {
+    var tr = { 'ä': 'ae', 'ü': 'ue', 'ö': 'oe', 'ß': 'ss' };
+    var output = string;
+
+    // make it all lowercase
+    output = output.toLowerCase();
+    // replace "Umlaute"
+    output = output.replace(/[äöüß]/g, function ($0) {
+      return tr[$0];
+    });
+    // replace spaces
+    output = output.replace(/ /g, '-');
+    // only keep wanted symbols
+    output = output.replace(/[^a-z 0-9 -]*/g, '');
+  };
+
   var wrapNode = function wrapNode(node, contentFn) {
     if (!node.id) {
-      console.warn('No ID for element', node);
-      return;
+      node.id = sanitizeString(node.innerText);
     }
     node.innerHTML = contentFn(node, inject);
   };
@@ -51,7 +66,7 @@
   };
 
   var init = exports.init = function init(mount) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return linkjuice(mount, options);
   };
 });
