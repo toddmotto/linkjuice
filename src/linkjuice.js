@@ -5,7 +5,7 @@ const makeLink = (node, inject) => `
       <span class="linkjuice-icon">${inject}</span>${node.innerHTML}
     </a>`;
 
-const makeTocItem = node => `<a href="#${node.id}">${node.querySelector('a').innerHTML}</a>`;
+const makeTocItem = node => `<a href="#${node.id}">${node.innerHTML}</a>`;
 
 const wrapNode = (node, contentFn) => {
   if (!node.id) {
@@ -58,8 +58,6 @@ const linkjuice = (mount, { contentFn = makeLink, icon = '#', selectors = ['h2',
   inject = icon;
   nodes = Array.prototype.slice.call(scope.querySelectorAll((selectors).join(',')));
 
-  nodes.map(node => wrapNode(node, contentFn));
-
   if (typeof tableOfContents === 'object' && tableOfContents !== null) {
     const toc = document.querySelector(tableOfContents.selector);
 
@@ -73,6 +71,8 @@ const linkjuice = (mount, { contentFn = makeLink, icon = '#', selectors = ['h2',
 
     toc.innerHTML = createTocHtml(tocElements, createTocItem);
   }
+
+  nodes.map(node => wrapNode(node, contentFn));
 };
 
 export const init = (mount, options = {}) => linkjuice(mount, options);

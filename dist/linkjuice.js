@@ -33,7 +33,7 @@
   };
 
   var makeTocItem = function makeTocItem(node) {
-    return '<a href="#' + node.id + '">' + node.querySelector('a').innerHTML + '</a>';
+    return '<a href="#' + node.id + '">' + node.innerHTML + '</a>';
   };
 
   var wrapNode = function wrapNode(node, contentFn) {
@@ -100,10 +100,6 @@
     inject = icon;
     nodes = Array.prototype.slice.call(scope.querySelectorAll(selectors.join(',')));
 
-    nodes.map(function (node) {
-      return wrapNode(node, contentFn);
-    });
-
     if ((typeof tableOfContents === 'undefined' ? 'undefined' : _typeof(tableOfContents)) === 'object' && tableOfContents !== null) {
       var toc = document.querySelector(tableOfContents.selector);
 
@@ -117,6 +113,10 @@
 
       toc.innerHTML = createTocHtml(tocElements, createTocItem);
     }
+
+    nodes.map(function (node) {
+      return wrapNode(node, contentFn);
+    });
   };
 
   var init = exports.init = function init(mount) {
